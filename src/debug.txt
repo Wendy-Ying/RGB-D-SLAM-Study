@@ -1,0 +1,57 @@
+wendy@wendy-Inspiron-13-5320:~/slam_study/build$ make
+[ 50%] Built target slambase
+[ 75%] Building CXX object src/CMakeFiles/slamEnd.dir/slamEnd.cpp.o
+In file included from /usr/local/include/g2o/core/base_fixed_sized_edge.h:39,
+                 from /usr/local/include/g2o/core/base_binary_edge.h:30,
+                 from /usr/local/include/g2o/types/slam3d/types_slam3d.h:31,
+                 from /home/wendy/slam_study/src/slamEnd.cpp:11:
+/usr/local/include/g2o/stuff/tuple_tools.h: In function ‘void g2o::tuple_apply_i(F&&, T&, int)’:
+/usr/local/include/g2o/stuff/tuple_tools.h:45:35: error: ‘tuple_size_v’ is not a member of ‘std’; did you mean ‘tuple_size’?
+   45 |     std::make_index_sequence<std::tuple_size_v<std::decay_t<T>>>());
+      |                                   ^~~~~~~~~~~~
+      |                                   tuple_size
+/usr/local/include/g2o/stuff/tuple_tools.h:45:35: error: ‘tuple_size_v’ is not a member of ‘std’; did you mean ‘tuple_size’?
+   45 |     std::make_index_sequence<std::tuple_size_v<std::decay_t<T>>>());
+      |                                   ^~~~~~~~~~~~
+      |                                   tuple_size
+/usr/local/include/g2o/stuff/tuple_tools.h:45:62: error: template argument 1 is invalid
+   45 |     std::make_index_sequence<std::tuple_size_v<std::decay_t<T>>>());
+      |                                                              ^~
+/usr/local/include/g2o/stuff/tuple_tools.h:45:66: error: expected primary-expression before ‘)’ token
+   45 |     std::make_index_sequence<std::tuple_size_v<std::decay_t<T>>>());
+      |                                                                  ^
+In file included from /usr/local/include/g2o/core/sparse_block_matrix.h:43,
+                 from /usr/local/include/g2o/core/sparse_optimizer.h:34,
+                 from /home/wendy/slam_study/src/slamEnd.cpp:12:
+/usr/local/include/g2o/core/matrix_structure.h: At global scope:
+/usr/local/include/g2o/core/matrix_structure.h:57:19: error: ‘std::string_view’ has not been declared
+   57 |   bool write(std::string_view filename) const;
+      |                   ^~~~~~~~~~~
+/home/wendy/slam_study/src/slamEnd.cpp: In function ‘int main(int, char**)’:
+/home/wendy/slam_study/src/slamEnd.cpp:65:67: error: no matching function for call to ‘g2o::BlockSolver<g2o::BlockSolverTraits<6, 3> >::BlockSolver(SlamLinearSolver*&)’
+   65 |  SlamBlockSolver* blockSolver = new SlamBlockSolver( linearSolver );
+      |                                                                   ^
+In file included from /usr/local/include/g2o/core/block_solver.h:204,
+                 from /home/wendy/slam_study/src/slamEnd.cpp:13:
+/usr/local/include/g2o/core/block_solver.hpp:41:1: note: candidate: ‘g2o::BlockSolver<Traits>::BlockSolver(std::unique_ptr<typename Traits::LinearSolverType>) [with Traits = g2o::BlockSolverTraits<6, 3>; typename Traits::LinearSolverType = g2o::LinearSolver<Eigen::Matrix<double, 6, 6, 0> >]’
+   41 | BlockSolver<Traits>::BlockSolver(std::unique_ptr<LinearSolverType> linearSolver)
+      | ^~~~~~~~~~~~~~~~~~~
+/usr/local/include/g2o/core/block_solver.hpp:41:68: note:   no known conversion for argument 1 from ‘SlamLinearSolver*’ {aka ‘g2o::LinearSolverCSparse<Eigen::Matrix<double, 6, 6, 0> >*’} to ‘std::unique_ptr<g2o::LinearSolver<Eigen::Matrix<double, 6, 6, 0> >, std::default_delete<g2o::LinearSolver<Eigen::Matrix<double, 6, 6, 0> > > >’
+   41 | lockSolver<Traits>::BlockSolver(std::unique_ptr<LinearSolverType> linearSolver)
+      |                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+
+/home/wendy/slam_study/src/slamEnd.cpp:66:101: error: no matching function for call to ‘g2o::OptimizationAlgorithmLevenberg::OptimizationAlgorithmLevenberg(SlamBlockSolver*&)’
+   66 | olver = new g2o::OptimizationAlgorithmLevenberg( blockSolver );
+      |                                                              ^
+
+In file included from /home/wendy/slam_study/src/slamEnd.cpp:20:
+/usr/local/include/g2o/core/optimization_algorithm_levenberg.h:47:12: note: candidate: ‘g2o::OptimizationAlgorithmLevenberg::OptimizationAlgorithmLevenberg(std::unique_ptr<g2o::Solver>)’
+   47 |   explicit OptimizationAlgorithmLevenberg(std::unique_ptr<Solver> solver);
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/g2o/core/optimization_algorithm_levenberg.h:47:67: note:   no known conversion for argument 1 from ‘SlamBlockSolver*’ {aka ‘g2o::BlockSolver<g2o::BlockSolverTraits<6, 3> >*’} to ‘std::unique_ptr<g2o::Solver>’
+   47 |   explicit OptimizationAlgorithmLevenberg(std::unique_ptr<Solver> solver);
+      |                                           ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+make[2]: *** [src/CMakeFiles/slamEnd.dir/build.make:63: src/CMakeFiles/slamEnd.dir/slamEnd.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:96: src/CMakeFiles/slamEnd.dir/all] Error 2
+make: *** [Makefile:84: all] Error 2
+

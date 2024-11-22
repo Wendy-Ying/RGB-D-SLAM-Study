@@ -1,0 +1,16 @@
+# 找到PCL库的包
+FIND_PACKAGE( PCL REQUIRED)
+ 
+# 找到opencv的包
+FIND_PACKAGE( OpenCV REQUIRED )
+ 
+# 添加PCL头文件和库文件
+ADD_DEFINITIONS( ${PCL_DEFINITIONS} )
+INCLUDE_DIRECTORIES( ${PCL_INCLUDE_DIRS}  )
+LINK_LIBRARIES( ${PCL_LIBRARY_DIRS} )
+ 
+ADD_LIBRARY( slambase slamBase.cpp )#生成slamBase库
+TARGET_LINK_LIBRARIES( slambase ${OpenCV_LIBS} ${PCL_LIBRARIES} )
+
+ADD_EXECUTABLE( visualOdometry visualOdometry.cpp)
+TARGET_LINK_LIBRARIES( visualOdometry slambase ${OpenCV_LIBS} ${PCL_LIBRARIES} )
